@@ -1,0 +1,26 @@
+.form-header input{
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    padding: 10px 20px;
+    font-size: 16px; 
+    outline: none;
+}    
+
+button{
+ background-color:#513612; 
+  color: white; 
+  padding: 15px 15px; 
+  border: none; 
+  border-radius: 10px;
+  margin: 20px;
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+button:hover {
+    background-color: #6b4716;
+}
+
+.form-header{
+    display:inline-block;
+}

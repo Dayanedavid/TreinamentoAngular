@@ -11,24 +11,44 @@ import { TaskService } from '../services/task.service';
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
+  public list : Array<Task> = [];
 
   public inputValue: string = "";
+  public teste : boolean = true;
+
+  marcado = true;
+  desmarcado = false;
 
   constructor(private service: TaskService){
     this.list = this.service.getlist();
   }
 
-  public list : Array<Task> = [];
- 
-  public delete(index: number){
+  getChecked(){
+    return this.list.filter(x => x.isChecked);
+
+  }
+
+  getNotChecked(){
+    return this.list.filter(x => !x.isChecked);
+  }
+
+  
+  public delete(item: Task){
+    let index = this.list.indexOf(item);
+
     this.service.delete(index);
   }
 
-  public toggleEdition(index: number): void {
+  public toggleEdition(item: Task): void {
+    let index = this.list.indexOf(item);
+
     this.inputValue = this.service.toggleEdition(index);
+    this.teste = !this.teste;
   }
 
-  public changeTask(index: number, description :string){
+  public changeTask(item: Task, description :string){
+
+    let index = this.list.indexOf(item);
 
     if(description.length === 0){
       alert("Digite uma tarefa valiada");
@@ -36,6 +56,15 @@ export class ListComponent {
     }
 
     this.service.update(index, description);
+
+    this.teste = !this.teste;
+
   }
 
+  onCheckboxChange(item: Task, inp : any): void {
+    let index = this.list.indexOf(item);
+    this.list[index].isChecked = inp.checked;
+
+    console.log(inp);
+  }
 }

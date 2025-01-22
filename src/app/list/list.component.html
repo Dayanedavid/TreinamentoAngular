@@ -1,28 +1,54 @@
-<div class="lista">
-    <ul>
-        @for (item of list; track $index) {
-            @if (!item.edition) {
-                <li>{{item.description}}</li>
-                <button (click)="delete($index)">
-                    <i class="fa-regular fa-trash-can"></i>
-                </button>
-                <button (click)="toggleEdition($index)">
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-
-            } @else {
-                <input #input type="text"  [value]="inputValue">
-                <button (click)="toggleEdition($index)">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <button (click)="changeTask($index, input.value)">
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-            }
-        }
-    </ul>
+@if (getNotChecked().length) {
+    <div class="lista">
+        <h2>Pendentes</h2>
+        <ul>
+            @for (item of getNotChecked(); track item.id) {
+                @if (!item.edition) {
+                    <div class="item">
+                        <div class="desc">
+                                <input #myInput [id]=item.id class="check" (change)="onCheckboxChange(item, myInput)" type="checkbox">
+                            <li>{{item.description}}</li>
+                        </div>
+                        <div class="buttons">
+                            <button (click)="delete(item)" class="delete">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                            @if (teste) {
+                                <button (click)="toggleEdition(item)">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                
     
-</div>
+                } @else {
+                    <input #input type="text"  [value]="inputValue" >
+                    <button (click)="toggleEdition(item)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button (click)="changeTask(item, input.value)">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                }
+            }
+        </ul>
+    </div>
+}
 
+@if(getChecked().length) {
+    <div class="listaDone">
+        <h2>Concluídas</h2>
+        <ul>
+            @for (item of getChecked() ; track item.id) {
+                <div class="item">
+                    <div class="desc">
+                        <input #myInput [id]=item.id class="check" (change)="onCheckboxChange(item, myInput)" type="checkbox" checked>
 
-
+                        <li>{{item.description}}</li>
+                    </div>    
+                </div>
+            }
+        </ul>
+    </div>
+}
