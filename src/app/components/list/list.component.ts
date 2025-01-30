@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Task } from '../models/task';
+import { Task } from '../../models/task';
 import { CommonModule } from '@angular/common';
-import { TaskService } from '../services/task.service';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-list',
@@ -16,11 +16,15 @@ export class ListComponent {
   public inputValue: string = "";
   public teste : boolean = true;
 
-  marcado = true;
-  desmarcado = false;
-
   constructor(private service: TaskService){
-    this.list = this.service.getlist();
+  }
+
+  ngOnInit(): void {
+    this.service.listTodo$.subscribe({
+      next: (tasks) => {
+        this.list = tasks;
+      },
+    });
   }
 
   getChecked(){
@@ -34,9 +38,7 @@ export class ListComponent {
 
   
   public delete(item: Task){
-    let index = this.list.indexOf(item);
-
-    this.service.delete(index);
+    this.service.delete(item.id);
   }
 
   public toggleEdition(item: Task): void {
@@ -48,23 +50,23 @@ export class ListComponent {
 
   public changeTask(item: Task, description :string){
 
-    let index = this.list.indexOf(item);
 
     if(description.length === 0){
-      alert("Digite uma tarefa valiada");
+      alert("Digite uma tarefa valida");
       return;
     }
 
-    this.service.update(index, description);
+    this.service.update(item.id, description);
 
     this.teste = !this.teste;
 
   }
 
   onCheckboxChange(item: Task, inp : any): void {
-    let index = this.list.indexOf(item);
-    this.list[index].isChecked = inp.checked;
+    this.service.updateStatus(item.id);
+  }
 
-    console.log(inp);
+  resetSearch(): void {
+    this.service.resetSearch();
   }
 }

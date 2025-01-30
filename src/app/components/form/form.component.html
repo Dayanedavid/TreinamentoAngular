@@ -1,5 +1,5 @@
 <div class="form-header">
-    <input #input  type="text" placeholder="Digite a tarefa">
+    <input #input  type="text" placeholder="Digite a tarefa" (keydown.enter)="addTask(input)">
 
     <button (click)="addTask(input)">
         <i class="fa-solid fa-plus"></i>

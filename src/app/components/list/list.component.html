@@ -23,13 +23,19 @@
                 
     
                 } @else {
-                    <input #input type="text"  [value]="inputValue" >
-                    <button (click)="toggleEdition(item)">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <button (click)="changeTask(item, input.value)">
-                        <i class="fa-regular fa-pen-to-square"></i>
-                    </button>
+                    <div class="item">
+                        <div class="desc">
+                            <input #input type="text"  [value]="inputValue" (keydown.enter)="changeTask(item, input.value)" >
+                        </div>  
+                        <div class="buttons">
+                            <button (click)="toggleEdition(item)">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <button (click)="changeTask(item, input.value)">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                        </div>    
+                    </div>
                 }
             }
         </ul>
@@ -43,12 +49,30 @@
             @for (item of getChecked() ; track item.id) {
                 <div class="item">
                     <div class="desc">
-                        <input #myInput [id]=item.id class="check" (change)="onCheckboxChange(item, myInput)" type="checkbox" checked>
-
+                        <li>
+                            <input #myInput [id]=item.id class="check" (change)="onCheckboxChange(item, myInput)" type="checkbox" checked>
+                        </li>    
                         <li>{{item.description}}</li>
-                    </div>    
+                       
+                    </div>
+
+                    <div class="end">
+                        <li><strong>Finalizado:</strong> {{item.terminationTime | date:'dd/MM/yyyy HH:mm' }}</li>
+                        <li>
+                            <button (click)="delete(item)" class="delete">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>  
+                        </li>      
+                    </div> 
+   
                 </div>
             }
         </ul>
+    </div>
+}
+
+@if (!list.length) {
+    <div class="notTask">
+        <p> Não há tarefas</p>
     </div>
 }

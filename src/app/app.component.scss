@@ -1,4 +1,8 @@
 .container{
+    width: 40%;
+}
+
+.container-justify{
     justify-items: center;
 }
 
@@ -9,8 +13,8 @@ h1{
 }
 
 img{
-width: 70px;
-height: 70px;
+    width: 70px;
+    height: 70px;
 }
 
 .intro{
@@ -19,4 +23,3 @@ height: 70px;
     align-items: center; 
     justify-content: center;
 }
-

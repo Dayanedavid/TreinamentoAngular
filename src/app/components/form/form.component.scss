@@ -1,7 +1,7 @@
 .form-header input{
     border: 2px solid #ccc; 
     border-radius: 5px; 
-    padding: 10px 20px;
+    padding: 10px 15px;
     font-size: 16px; 
     outline: none;
 }    
@@ -12,7 +12,7 @@ button{
   padding: 15px 15px; 
   border: none; 
   border-radius: 10px;
-  margin: 20px;
+  margin: 10px;
   cursor: pointer; 
   transition: background-color 0.3s ease; 
 }
@@ -22,5 +22,5 @@ button:hover {
 }
 
 .form-header{
-    display:inline-block;
+    justify-self: center;
 }

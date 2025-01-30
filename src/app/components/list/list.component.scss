@@ -7,24 +7,27 @@
     padding: 10px 20px;
     justify-content: space-between;
     align-items: center;
+    
 }
 
-.desc input{
-    margin-right: 20px;
+.check{
+    margin-right: 10px;
 }
 
 .desc{
     display: flex;
     align-items: center;
-    justify-items: center;
-    align-content: center;
-}
+    justify-content: space-between;
 
+}
 
 h2{
     color:  #df6c0e;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
 }
 
 ul {
@@ -61,14 +64,34 @@ input.check{
 input{
     border: 2px solid #ccc; 
     border-radius: 5px; 
-    padding: 10px 20px;
-    font-size: 16px; 
+    padding: 5px 10px;
+    font-size: 14px; 
     outline: none;    
-    margin-bottom: 10px;
 }    
 
 
-// input[type="checkbox"] {
-//     accent-color: green; 
-//     cursor: pointer;
-// }
+input[type="checkbox"] {
+    accent-color: green; 
+    cursor: pointer;
+}
+
+h1{
+    color: rgb(164, 82, 0);
+    font-family: 'Stencil Std', fantasy, sans-serif;
+    font-size: 1.5rem;
+}
+
+.notTask{
+    justify-items: center;
+    margin-top: 20px;
+    font-size: 20px;
+    color:  #df6c0e;
+    font-family: 'Stencil Std', fantasy, sans-serif;
+}
+
+.end{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
